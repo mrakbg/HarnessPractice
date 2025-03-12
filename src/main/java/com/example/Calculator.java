@@ -1,5 +1,7 @@
 package com.example;
 
+import java.util.Scanner;
+
 public class Calculator {
     public int add(int a, int b) {
         return a + b;
@@ -14,19 +16,32 @@ public class Calculator {
     }
 
     public static void main(String[] args) {
-        java.util.Scanner scanner = new java.util.Scanner(System.in);
-
-        System.out.print("Enter first number: ");
-        int a = scanner.nextInt();
-
-        System.out.print("Enter second number: ");
-        int b = scanner.nextInt();
-
+        Scanner scanner = new Scanner(System.in);
         Calculator calc = new Calculator();
-        System.out.println("Addition: " + calc.add(a, b));
-        System.out.println("Subtraction: " + calc.subtract(a, b));
-        System.out.println("Multiplication: " + calc.multiply(a, b));
 
+        System.out.println("Calculator App is running...");
+
+        while (true) {
+            System.out.print("\nEnter first number (or type 'exit' to quit): ");
+            if (scanner.hasNextInt()) {
+                int a = scanner.nextInt();
+                
+                System.out.print("Enter second number: ");
+                int b = scanner.nextInt();
+
+                System.out.println("Addition: " + calc.add(a, b));
+                System.out.println("Subtraction: " + calc.subtract(a, b));
+                System.out.println("Multiplication: " + calc.multiply(a, b));
+            } else {
+                String input = scanner.next();
+                if (input.equalsIgnoreCase("exit")) {
+                    System.out.println("Exiting Calculator...");
+                    break;
+                } else {
+                    System.out.println("Invalid input, please enter a number or 'exit'.");
+                }
+            }
+        }
         scanner.close();
     }
 }
