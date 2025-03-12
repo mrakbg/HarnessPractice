@@ -1,5 +1,3 @@
-package com.example.calculator;
-
 public class Calculator {
     public int add(int a, int b) {
         return a + b;
@@ -13,18 +11,20 @@ public class Calculator {
         return a * b;
     }
 
-    public double divide(int a, int b) {
-        if (b == 0) {
-            throw new ArithmeticException("Division by zero is not allowed");
-        }
-        return (double) a / b;
-    }
-
     public static void main(String[] args) {
+        java.util.Scanner scanner = new java.util.Scanner(System.in);
+
+        System.out.print("Enter first number: ");
+        int a = scanner.nextInt();
+
+        System.out.print("Enter second number: ");
+        int b = scanner.nextInt();
+
         Calculator calc = new Calculator();
-        System.out.println("Addition: " + calc.add(10, 5));
-        System.out.println("Subtraction: " + calc.subtract(10, 5));
-        System.out.println("Multiplication: " + calc.multiply(10, 5));
-        System.out.println("Division: " + calc.divide(10, 5));
+        System.out.println("Addition: " + calc.add(a, b));
+        System.out.println("Subtraction: " + calc.subtract(a, b));
+        System.out.println("Multiplication: " + calc.multiply(a, b));
+
+        scanner.close();
     }
 }
