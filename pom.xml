@@ -11,7 +11,7 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <harnessArgLine></harnessArgLine>  <!-- Added for Harness -->
+        <harnessArgLine>-Xmx512m -XX:MaxPermSize=256m</harnessArgLine>
     </properties>
 
     <dependencies>
@@ -33,7 +33,7 @@
 
     <build>
         <plugins>
-            <!-- Compiler Plugin to set Java 17 -->
+            <!-- Compiler Plugin for Java 17 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -50,11 +50,12 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
                 <configuration>
-                    <argLine>${harnessArgLine} @{argLine}</argLine>  <!-- Updated for Harness -->
+                    <argLine>${harnessArgLine} @{argLine}</argLine>
+                    <forkCount>0</forkCount> <!-- Disable forking to prevent VM crashes -->
                 </configuration>
             </plugin>
 
-            <!-- Maven JAR Plugin to set the Main-Class -->
+            <!-- Maven JAR Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -62,7 +63,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.example.Calculator</mainClass>  <!-- Ensure this matches your Java file -->
+                            <mainClass>com.example.Calculator</mainClass> <!-- Ensure this matches your main Java class -->
                         </manifest>
                     </archive>
                 </configuration>
